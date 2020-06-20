@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
       title: 'Key Keeper',
       darkTheme: ThemeData.dark(),
       theme: ThemeData(
-        primaryColor: Colors.white,
+        primaryColor: Color(0xfff3c623),
+        buttonColor: Colors.blue,
         accentColor: Color(0xfff3c623),
       ),
       home: AccountListPage(),

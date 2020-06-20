@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keykeeper/info_modal.dart';
+import 'package:keykeeper/storage/preferences_manager.dart';
 
 class AddAccountBottomSheet extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
           child: AnimatedCrossFade(
               firstChild: Container(
                 padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(color: ThemeData.dark().dialogBackgroundColor, borderRadius: BorderRadius.circular(30)),
+                decoration: BoxDecoration(color: Theme.of(context).dialogBackgroundColor, borderRadius: BorderRadius.circular(30)),
                 constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height - 200),
                 child: Form(
                   key: _formKey,
@@ -61,6 +62,7 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
                         },
                       ),
                       Padding(
+
                         padding: const EdgeInsets.all(8.0),
                         child: RaisedButton(
                           onPressed: () => validateNewAccountSubmit(context),

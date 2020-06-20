@@ -11,7 +11,7 @@ class InfoModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height / 3),
-      decoration: BoxDecoration(color: ThemeData.dark().dialogBackgroundColor, borderRadius: BorderRadius.circular(30)),
+      decoration: BoxDecoration(color: Theme.of(context).dialogBackgroundColor, borderRadius: BorderRadius.circular(30)),
       padding: EdgeInsets.all(20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
