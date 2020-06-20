@@ -77,16 +77,24 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
               secondChild: Container(
                 constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height / 3),
                 padding: EdgeInsets.all(20),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.green,
-                    onPressed: () => Navigator.pop(context),
-                    child: Icon(Icons.check, color: Colors.white),
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Text("Great!", style: Theme.of(context).textTheme.headline5),
+                    Text("A new account has been added to your list."),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: FloatingActionButton(
+                        backgroundColor: Colors.green,
+                        onPressed: () => Navigator.pop(context),
+                        child: Icon(Icons.check, color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              crossFadeState: _showSecond ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+              crossFadeState: !_showSecond ? CrossFadeState.showSecond : CrossFadeState.showFirst,
               duration: Duration(milliseconds: 250)),
         );
       },
