@@ -13,7 +13,10 @@ class _AccountListPageState extends State<AccountListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("My accounts")),
+      appBar: AppBar(
+        elevation: 0,
+          backgroundColor: Colors.transparent,
+          title: Text("My accounts")),
       body: Padding(
         padding: EdgeInsets.all(8.0),
         child: ListView.separated(
@@ -27,16 +30,19 @@ class _AccountListPageState extends State<AccountListPage> {
           itemCount: accounts.length,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            showModalBottomSheet(
-                context: context,
-                backgroundColor: Colors.transparent,
-                builder: (BuildContext bc) {
-                  return AddAccountBottomSheet();
-                });
-          }),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  backgroundColor: Colors.transparent,
+                  builder: (BuildContext bc) {
+                    return AddAccountBottomSheet();
+                  });
+            }),
+      ),
     );
   }
 }
