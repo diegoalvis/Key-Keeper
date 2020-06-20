@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keykeeper/info_modal.dart';
 
 class AddAccountBottomSheet extends StatefulWidget {
   @override
@@ -18,10 +19,10 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
       builder: (BuildContext context) {
         return Container(
           margin: EdgeInsets.all(16),
-          decoration: BoxDecoration(color: ThemeData.dark().cardColor, borderRadius: BorderRadius.circular(30)),
           child: AnimatedCrossFade(
               firstChild: Container(
                 padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(color: ThemeData.dark().dialogBackgroundColor, borderRadius: BorderRadius.circular(30)),
                 constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height - 200),
                 child: Form(
                   key: _formKey,
@@ -59,42 +60,28 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
                           return null;
                         },
                       ),
-                      RaisedButton(
-                        onPressed: () => validateNewAccountSubmit(context),
-                        padding: EdgeInsets.all(15),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text("Add account"),
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          onPressed: () => validateNewAccountSubmit(context),
+                          padding: EdgeInsets.all(15),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[Text("Add account")],
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-              secondChild: Container(
-                constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height / 3),
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text("Great!", style: Theme.of(context).textTheme.headline5),
-                    Text("A new account has been added to your list."),
-                    SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: FloatingActionButton(
-                        backgroundColor: Colors.green,
-                        onPressed: () => Navigator.pop(context),
-                        child: Icon(Icons.check, color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
+              secondChild: InfoModal(
+                title: "Great!",
+                message: "A new account has been added to your list.",
+                onCheckButtonPressed: () => Navigator.pop(context),
               ),
-              crossFadeState: !_showSecond ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+              crossFadeState: _showSecond ? CrossFadeState.showSecond : CrossFadeState.showFirst,
               duration: Duration(milliseconds: 250)),
         );
       },
@@ -105,7 +92,7 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
     if (_formKey.currentState.validate()) {
       setState(() => _showSecond = true);
     } else {
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
+
     }
   }
 }
