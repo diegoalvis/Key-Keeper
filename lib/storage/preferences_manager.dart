@@ -17,6 +17,6 @@ class PreferencesManager {
     final accountList = await getAccountList() ?? List<AccountModel>();
     accountList.add(account);
     final pref = await prefs;
-    pref.setStringList(_KEY_ACCOUNTS, accountList.map((e) => json.encode(e.toJson())));
+    pref.setStringList(_KEY_ACCOUNTS, accountList.map((e) => json.encode(e.toJson())).toList());
   }
 }

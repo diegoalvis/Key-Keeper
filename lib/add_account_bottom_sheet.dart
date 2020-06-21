@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keykeeper/info_modal.dart';
+import 'package:keykeeper/storage/account_model.dart';
 import 'package:keykeeper/storage/preferences_manager.dart';
 
 class AddAccountBottomSheet extends StatefulWidget {
@@ -9,6 +10,8 @@ class AddAccountBottomSheet extends StatefulWidget {
 
 class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
   bool _showSecond = false;
+  AccountModel _accountModel = AccountModel();
+  PreferencesManager _preferencesManager = PreferencesManager();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -33,6 +36,7 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
                       Icon(Icons.lock_outline),
                       TextFormField(
                         decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Name", hintText: 'i.e. Gmail, Amazon, iCloud, Netflix...'),
+                        onSaved: (value) => _accountModel.name = value.trim(),
                         textCapitalization: TextCapitalization.sentences,
                         validator: (value) {
                           if (value.isEmpty) {
@@ -43,6 +47,7 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
                       ),
                       TextFormField(
                         decoration: InputDecoration(border: OutlineInputBorder(), labelText: "User", hintText: 'john@example.com'),
+                        onSaved: (value) => _accountModel.user = value.trim(),
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter some text';
@@ -52,8 +57,8 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
                       ),
                       TextFormField(
                         decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Password"),
-                        obscureText: true,
                         keyboardType: TextInputType.visiblePassword,
+                        onSaved: (value) => _accountModel.password = value.trim(),
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter some text';
@@ -62,7 +67,6 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
                         },
                       ),
                       Padding(
-
                         padding: const EdgeInsets.all(8.0),
                         child: RaisedButton(
                           onPressed: () => validateNewAccountSubmit(context),
@@ -90,11 +94,11 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
     );
   }
 
-  void validateNewAccountSubmit(BuildContext context) {
+  Future validateNewAccountSubmit(BuildContext context) async {
     if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+      await _preferencesManager.saveAccount(_accountModel);
       setState(() => _showSecond = true);
-    } else {
-
     }
   }
 }
