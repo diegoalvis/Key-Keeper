@@ -4,6 +4,10 @@ import 'package:keykeeper/storage/account_model.dart';
 import 'package:keykeeper/storage/preferences_manager.dart';
 
 class AddAccountBottomSheet extends StatefulWidget {
+  final Function onAccountSaved;
+
+  const AddAccountBottomSheet({Key key, this.onAccountSaved}) : super(key: key);
+
   @override
   _AddAccountBottomSheetState createState() => _AddAccountBottomSheetState();
 }
@@ -98,6 +102,7 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       await _preferencesManager.saveAccount(_accountModel);
+      widget.onAccountSaved.call();
       setState(() => _showSecond = true);
     }
   }

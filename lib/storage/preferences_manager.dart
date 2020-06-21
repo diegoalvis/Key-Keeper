@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:keykeeper/storage/account_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// TODO inject
 class PreferencesManager {
   static const String _KEY_ACCOUNTS = 'key_accounts';
 
@@ -10,7 +11,7 @@ class PreferencesManager {
 
   Future<List<AccountModel>> getAccountList() async {
     final pref = await prefs;
-    return pref.getStringList(_KEY_ACCOUNTS)?.map((e) => AccountModel.fromJson(json.decode(e)));
+    return pref.getStringList(_KEY_ACCOUNTS)?.map((e) => AccountModel.fromJson(json.decode(e)))?.toList();
   }
 
   Future saveAccount(AccountModel account) async {
