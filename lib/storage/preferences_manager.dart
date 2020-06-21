@@ -8,13 +8,15 @@ class PreferencesManager {
 
   Future<SharedPreferences> get prefs async => await SharedPreferences.getInstance();
 
-  Future<List<String>> getAccountList() async {
+  Future<List<AccountModel>> getAccountList() async {
     final pref = await prefs;
-    return pref.getStringList(_KEY_ACCOUNTS)?.map((e) => json.decode(e));
+    return pref.getStringList(_KEY_ACCOUNTS)?.map((e) => AccountModel.fromJson(json.decode(e)));
   }
 
   Future saveAccount(AccountModel account) async {
-    final accountList = await getAccountList() ?? List<String>();
-    accountList.add(json.encode(accountList));
+    final accountList = await getAccountList() ?? List<AccountModel>();
+    accountList.add(account);
+    final pref = await prefs;
+    pref.setStringList(_KEY_ACCOUNTS, accountList.map((e) => json.encode(e.toJson())));
   }
 }
