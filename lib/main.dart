@@ -11,7 +11,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Key Keeper',
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark().copyWith(
+        buttonColor: Colors.blue,
+        accentColor: Colors.blue,
+        primaryColorDark: Colors.blue,
+        primaryColor: Colors.blue,
+        indicatorColor: Colors.blue,
+        cursorColor: Colors.blue,
+      ),
       theme: ThemeData(
         primaryColor: Color(0xfff3c623),
         buttonColor: Colors.blue,

@@ -17,6 +17,16 @@ class PreferencesManager {
   Future saveAccount(AccountModel account) async {
     final accountList = await getAccountList() ?? List<AccountModel>();
     accountList.add(account);
+    await _saveAccountList(accountList);
+  }
+
+  Future removeAccount(int index) async {
+    final accountList = await getAccountList() ?? List<AccountModel>();
+    accountList?.removeAt(index);
+    await _saveAccountList(accountList);
+  }
+
+  Future _saveAccountList(List<AccountModel> accountList) async {
     final pref = await prefs;
     pref.setStringList(_KEY_ACCOUNTS, accountList.map((e) => json.encode(e.toJson())).toList());
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:keykeeper/info_modal.dart';
 import 'package:keykeeper/storage/account_model.dart';
 import 'package:keykeeper/storage/preferences_manager.dart';
@@ -35,9 +36,13 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
                 child: Form(
                   key: _formKey,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      Icon(Icons.lock_outline),
+                      ListTile(
+                        leading: Icon(Icons.lock_outline),
+                        title: Text("New Account"),
+                      ),
                       TextFormField(
                         decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Name", hintText: 'i.e. Gmail, Amazon, iCloud, Netflix...'),
                         onSaved: (value) => _accountModel.name = value.trim(),
