@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:keykeeper/info_modal.dart';
+import 'package:keykeeper/modal/info_modal.dart';
 import 'package:keykeeper/storage/account_model.dart';
 import 'package:keykeeper/storage/preferences_manager.dart';
 

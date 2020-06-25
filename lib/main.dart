@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:keykeeper/account_list_page.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:keykeeper/welcome/welcome_page.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final currentBrightness = SchedulerBinding.instance.window.platformBrightness;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: [Color(0xFF0C1C3D),  Colors.black],
+          colors: currentBrightness == Brightness.dark ? [Color(0xFF0C1C3D), Colors.black] : [Colors.white, Colors.grey[400]],
         ),
       ),
       child: MaterialApp(
@@ -32,13 +35,12 @@ class MyApp extends StatelessWidget {
           cursorColor: Colors.blue,
         ),
         theme: ThemeData(
-                    scaffoldBackgroundColor: Colors.transparent,
-
-        primaryColor: Color(0xfff3c623),
+          scaffoldBackgroundColor: Colors.transparent,
+          primaryColor: Color(0xfff3c623),
           buttonColor: Colors.blue,
           accentColor: Color(0xfff3c623),
         ),
-        home: AccountListPage(),
+        home: WelcomePage(),
       ),
     );
   }
