@@ -26,9 +26,10 @@ class _AccountListPageState extends State<AccountListPage> {
       appBar: AppBar(elevation: 0, backgroundColor: Colors.transparent, title: Text("My accounts")),
       body: accountList == null || accountList.isEmpty
           ? buildEmptyStateWidget(context)
-          : Padding(
+          : Container(
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
+                itemCount: accountList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -46,8 +47,6 @@ class _AccountListPageState extends State<AccountListPage> {
                     ),
                   );
                 },
-//              separatorBuilder: (BuildContext context, int index) => SizedBox(height: 16.0),
-                itemCount: accountList.length,
               ),
             ),
       floatingActionButton: Padding(
@@ -61,21 +60,24 @@ class _AccountListPageState extends State<AccountListPage> {
   }
 
   Widget buildEmptyStateWidget(BuildContext context) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
       children: <Widget>[
-        Text("No account to show yet..."),
+        Image(image: AssetImage('images/image.png')),
+        Padding(padding: const EdgeInsets.all(8.0), child: Text("Zzzz...", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
+        Text("No account to show yet."),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: OutlineButton(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            borderSide: BorderSide(color: Colors.tealAccent),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+            textColor: Colors.tealAccent,
             child: Text("Add account"),
             onPressed: () => showAddAccountModal(context),
           ),
         ),
       ],
-    ));
+    );
   }
 
   void showDeleteAccountModal(BuildContext context, int index) {
@@ -84,7 +86,7 @@ class _AccountListPageState extends State<AccountListPage> {
         builder: (context) {
           return AlertDialog(
             actionsPadding: const EdgeInsets.symmetric(horizontal: 8.0),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             title: Text('Delete Account'),
             content: Text('You will not longer able to restore the info...'),
             actions: <Widget>[
@@ -94,12 +96,13 @@ class _AccountListPageState extends State<AccountListPage> {
                   loadAccountList();
                   Navigator.pop(context);
                 },
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 child: Text("Delete anyway"),
               ),
               RaisedButton(
                 onPressed: () => Navigator.pop(context),
-                padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 child: Text("Cancel"),
               ),

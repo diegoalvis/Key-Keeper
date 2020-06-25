@@ -9,22 +9,37 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Key Keeper',
-      darkTheme: ThemeData.dark().copyWith(
-        buttonColor: Colors.blue,
-        accentColor: Colors.blue,
-        primaryColorDark: Colors.blue,
-        primaryColor: Colors.blue,
-        indicatorColor: Colors.blue,
-        cursorColor: Colors.blue,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [Color(0xFF0C1C3D),  Colors.black],
+        ),
       ),
-      theme: ThemeData(
+      child: MaterialApp(
+        title: 'Key Keeper',
+        darkTheme: ThemeData.dark().copyWith(
+          buttonTheme: ButtonThemeData(buttonColor: Colors.teal),
+          accentColor: Colors.tealAccent,
+          primaryColorDark: Colors.blue,
+          scaffoldBackgroundColor: Colors.transparent,
+          primaryColor: Colors.blue,
+          dividerColor: Colors.transparent,
+          cardColor: Color(0xFF0C1C3D),
+          dialogBackgroundColor: Color(0xFF0C1C3D),
+          indicatorColor: Colors.blue,
+          cursorColor: Colors.blue,
+        ),
+        theme: ThemeData(
+                    scaffoldBackgroundColor: Colors.transparent,
+
         primaryColor: Color(0xfff3c623),
-        buttonColor: Colors.blue,
-        accentColor: Color(0xfff3c623),
+          buttonColor: Colors.blue,
+          accentColor: Color(0xfff3c623),
+        ),
+        home: AccountListPage(),
       ),
-      home: AccountListPage(),
     );
   }
 }
