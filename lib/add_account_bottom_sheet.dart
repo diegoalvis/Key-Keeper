@@ -40,7 +40,6 @@ class _AddAccountBottomSheetState extends State<AddAccountBottomSheet> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       ListTile(
-                        leading: Icon(Icons.lock_outline),
                         title: Text("New Account"),
                       ),
                       TextFormField(

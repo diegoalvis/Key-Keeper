@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keykeeper/storage/account_model.dart';
 import 'package:keykeeper/storage/preferences_manager.dart';
+import 'package:lottie/lottie.dart';
 
 import 'add_account_bottom_sheet.dart';
 
@@ -62,20 +63,21 @@ class _AccountListPageState extends State<AccountListPage> {
   Widget buildEmptyStateWidget(BuildContext context) {
     return Column(
       children: <Widget>[
-        Image(image: AssetImage('images/image.png')),
-        Padding(padding: const EdgeInsets.all(8.0), child: Text("Zzzz...", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
-        Text("No account to show yet."),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: OutlineButton(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            borderSide: BorderSide(color: Colors.tealAccent),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-            textColor: Colors.tealAccent,
-            child: Text("Add account"),
-            onPressed: () => showAddAccountModal(context),
-          ),
-        ),
+        Expanded(child: Lottie.asset('assets/anims/anim.json', repeat: true)),
+//        Image(image: AssetImage('assets/images/image.png')),
+//        Padding(padding: const EdgeInsets.all(8.0), child: Text("Zzzz...", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
+//        Text("No account to show yet."),
+//        Padding(
+//          padding: const EdgeInsets.all(8.0),
+//          child: OutlineButton(
+//            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//            borderSide: BorderSide(color: Colors.tealAccent),
+//            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+//            textColor: Colors.tealAccent,
+//            child: Text("Add account"),
+//            onPressed: () => showAddAccountModal(context),
+//          ),
+//        ),
       ],
     );
   }
