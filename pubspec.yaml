@@ -44,4 +44,5 @@ flutter:
   assets:
     - assets/images/image.png
     - assets/images/lock.png
-    - assets/anims/anim.json
+    - assets/anims/lock_anim_dark.json
+    - assets/anims/lock_anim_light.json

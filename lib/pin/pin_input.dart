@@ -17,9 +17,13 @@ class PinInput extends StatelessWidget {
       children: <Widget>[
         PinPut(
           fieldsCount: 4,
+          obscureText: '●',
+          pinAnimationType: PinAnimationType.scale,
           onSubmit: (String pin) => validatePin(pin).then((isValid) => onPinValidated(isValid)),
           submittedFieldDecoration: _pinPutDecoration,
-          selectedFieldDecoration: _pinPutDecoration,
+          selectedFieldDecoration: _pinPutDecoration.copyWith(
+            border: Border.all(color: Colors.teal),
+          ),
           followingFieldDecoration: _pinPutDecoration,
         ),
       ],
