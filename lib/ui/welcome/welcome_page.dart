@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:keykeeper/account_list/account_list_page.dart';
-import 'package:keykeeper/pin/pin_input.dart';
+import 'package:keykeeper/ui/account_list/account_list_page.dart';
+import 'package:keykeeper/ui/pin/pin_input.dart';
 import 'package:lottie/lottie.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -58,7 +58,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text("Enter pin"),
+                      child: Text("Enter ui.pin"),
                     ),
                   ],
                 ),

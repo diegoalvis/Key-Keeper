@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:keykeeper/storage/account_model.dart';
-import 'package:keykeeper/storage/preferences_manager.dart';
-import 'package:lottie/lottie.dart';
+import 'package:keykeeper/data/account_model.dart';
+import 'package:keykeeper/data/preferences_manager.dart';
 
 import '../modal/add_account_bottom_sheet.dart';
 
@@ -24,32 +23,41 @@ class _AccountListPageState extends State<AccountListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0, backgroundColor: Colors.transparent, title: Text("My accounts")),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: Text("My accounts"),
+      ),
+      resizeToAvoidBottomPadding: true,
       body: accountList == null || accountList.isEmpty
           ? buildEmptyStateWidget(context)
           : Container(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView.builder(
-                itemCount: accountList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                    child: ExpansionTile(
-                      trailing: IconButton(
-                        icon: Icon(Icons.more_vert, size: 16),
-                        onPressed: () => showDeleteAccountModal(context, index),
-                      ),
-                      children: <Widget>[
-                        ListTile(leading: Icon(Icons.person_outline), title: Text(accountList[index].user)),
-                        ListTile(leading: Icon(Icons.lock_outline), title: Text(accountList[index].password)),
-                      ],
-                      title: Text(accountList[index].name),
-                      leading: Icon(Icons.picture_in_picture),
-                    ),
-                  );
-                },
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.builder(
+          itemCount: accountList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              child: Theme(
+                data: Theme.of(context).copyWith(accentColor: Colors.blue),
+                child: ExpansionTile(
+                  trailing: IconButton(
+                    icon: Icon(Icons.more_vert, size: 16),
+                    onPressed: () => showDeleteAccountModal(context, index),
+                  ),
+                  children: <Widget>[
+                    ListTile(leading: Icon(Icons.person_outline), title: Text(accountList[index].user)),
+                    ListTile(leading: Icon(Icons.lock_outline), title: Text(accountList[index].password)),
+                  ],
+                  title: Text(accountList[index].name),
+                  leading: Icon(Icons.picture_in_picture),
+                ),
               ),
-            ),
+            );
+          },
+        ),
+      ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
@@ -70,9 +78,9 @@ class _AccountListPageState extends State<AccountListPage> {
           padding: const EdgeInsets.all(8.0),
           child: OutlineButton(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            borderSide: BorderSide(color: Colors.tealAccent),
+            borderSide: BorderSide(color: Theme.of(context).primaryColor),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-            textColor: Colors.tealAccent,
+            textColor: Theme.of(context).primaryColor,
             child: Text("Add account"),
             onPressed: () => showAddAccountModal(context),
           ),
@@ -116,9 +124,9 @@ class _AccountListPageState extends State<AccountListPage> {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (BuildContext bc) => AddAccountBottomSheet(
-        onAccountSaved: () => loadAccountList(),
-      ),
+      builder: (BuildContext context) {
+        return AddAccountBottomSheet(onAccountSaved: () => loadAccountList());
+      },
     );
   }
 

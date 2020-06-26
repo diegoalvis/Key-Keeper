@@ -30,7 +30,7 @@ class _PinInputState extends State<PinInput> {
           textStyle: TextStyle(color: Colors.grey),
           pinAnimationType: PinAnimationType.scale,
           autoValidate: true,
-          validator: (val) => _validate || val.length < 4 ? '' : 'Wrong pin',
+          validator: (val) => _validate || val.length < 4 ? '' : 'Wrong ui.pin',
           onSubmit: (String value) {
             FocusScope.of(context).unfocus();
             widget.onPinValidated(validatePin(value));

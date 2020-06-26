@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:keykeeper/storage/account_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'account_model.dart';
 
 // TODO inject
 class PreferencesManager {

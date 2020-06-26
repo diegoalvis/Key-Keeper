@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:keykeeper/welcome/welcome_page.dart';
+import 'package:keykeeper/ui/account_list/account_list_page.dart';
+import 'package:keykeeper/ui/welcome/welcome_page.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: currentBrightness == Brightness.dark ? Alignment.topRight : Alignment.bottomLeft,
-          end: currentBrightness == Brightness.dark ? Alignment.bottomLeft : Alignment.topRight,
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
           colors: currentBrightness == Brightness.dark ? [Color(0xFF0C1C3D), Colors.black] : [Colors.white, Colors.grey[500]],
         ),
       ),
@@ -36,11 +36,11 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.transparent,
-          primaryColor: Color(0xfff3c623),
-          buttonColor: Colors.blue,
-          accentColor: Color(0xfff3c623),
+          primaryColor: Colors.lightBlue,
+          buttonColor: Colors.lightBlue,
+          accentColor: Colors.yellow,
         ),
-        home: WelcomePage(),
+        home: AccountListPage(),
       ),
     );
   }
