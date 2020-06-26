@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 
-class PinInput extends StatelessWidget {
+class PinInput extends StatefulWidget {
   final ValueChanged<bool> onPinValidated;
-  final _controller = TextEditingController();
 
   PinInput({this.onPinValidated});
 
+  @override
+  _PinInputState createState() => _PinInputState();
+}
+
+class _PinInputState extends State<PinInput> {
+  final _controller = TextEditingController();
+  bool _validate = true;
 
   final BoxDecoration _pinPutDecoration = BoxDecoration(
     borderRadius: BorderRadius.circular(5),
@@ -23,11 +29,11 @@ class PinInput extends StatelessWidget {
           controller: _controller,
           textStyle: TextStyle(color: Colors.grey),
           pinAnimationType: PinAnimationType.scale,
-          onSubmit: (String pin) {
+          autoValidate: true,
+          validator: (val) => _validate || val.length < 4 ? '' : 'Wrong pin',
+          onSubmit: (String value) {
             FocusScope.of(context).unfocus();
-            validatePin(pin).then((isValid) {
-              onPinValidated(isValid);
-            });
+            widget.onPinValidated(validatePin(value));
           },
           submittedFieldDecoration: _pinPutDecoration,
           selectedFieldDecoration: _pinPutDecoration.copyWith(
@@ -39,9 +45,10 @@ class PinInput extends StatelessWidget {
     );
   }
 
-  Future<bool> validatePin(String pin) {
+  bool validatePin(String pin) {
     String TEST_PIN_VALUE = "1111";
     final isValid = pin == TEST_PIN_VALUE;
-    return Future.value(isValid);
+    setState(() => _validate = isValid);
+    return isValid;
   }
 }

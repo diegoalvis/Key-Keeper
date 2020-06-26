@@ -37,7 +37,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   height: 135,
                   width: 135,
                   child: _showLoader
-                      ? Center(child: Platform.isAndroid ? Lottie.asset('assets/anims/lock_anim_light.json', repeat: true) : CupertinoActivityIndicator())
+                      ? Center(child: Platform.isAndroid ? Lottie.asset('assets/anims/lock_anim_light.json', repeat: false) : CupertinoActivityIndicator())
                       : Image.asset('assets/images/lock.png', scale: 6)),
               Spacer(),
               AnimatedOpacity(
@@ -48,13 +48,11 @@ class _WelcomePageState extends State<WelcomePage> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 100.0),
-                      child: PinInput(onPinValidated: (isValid) async {
-                        // TODO remove this
-                        setState(() => _showLoader = true);
+                      child: PinInput(onPinValidated: (isValid) {
                         if (isValid) {
-                          Navigator.pushReplacement(this.context, MaterialPageRoute(builder: (context) => AccountListPage()));
+                          navigateToHome(context);
                         } else {
-                          setState(() => _showLoader = false);
+
                         }
                       }),
                     ),
@@ -75,5 +73,11 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
       ),
     );
+  }
+
+  void navigateToHome(BuildContext context) async {
+    setState(() => _showLoader = true);
+    await Future.delayed(Duration(seconds: 2));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AccountListPage()));
   }
 }
