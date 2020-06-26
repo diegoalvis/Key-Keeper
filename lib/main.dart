@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: currentBrightness == Brightness.dark ? [Color(0xFF0C1C3D), Colors.black] : [Colors.white, Colors.grey[400]],
+          begin: currentBrightness == Brightness.dark ? Alignment.topRight : Alignment.bottomLeft,
+          end: currentBrightness == Brightness.dark ? Alignment.bottomLeft : Alignment.topRight,
+          colors: currentBrightness == Brightness.dark ? [Color(0xFF0C1C3D), Colors.black] : [Colors.white, Colors.grey[500]],
         ),
       ),
       child: MaterialApp(

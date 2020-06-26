@@ -51,13 +51,11 @@ class _WelcomePageState extends State<WelcomePage> {
                       child: PinInput(onPinValidated: (isValid) async {
                         // TODO remove this
                         setState(() => _showLoader = true);
-                        await Future.delayed(Duration(seconds: 3), () {
-                          if (isValid) {
-                            Navigator.pushReplacement(this.context, MaterialPageRoute(builder: (context) => AccountListPage()));
-                          } else {
-                            setState(() => _showLoader = false);
-                          }
-                        });
+                        if (isValid) {
+                          Navigator.pushReplacement(this.context, MaterialPageRoute(builder: (context) => AccountListPage()));
+                        } else {
+                          setState(() => _showLoader = false);
+                        }
                       }),
                     ),
                     Padding(
