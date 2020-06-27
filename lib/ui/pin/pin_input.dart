@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 
 class PinInput extends StatefulWidget {
-  final ValueChanged<bool> onPinValidated;
+  final Function onPinValidated;
 
   PinInput({this.onPinValidated});
 
@@ -30,10 +30,12 @@ class _PinInputState extends State<PinInput> {
           textStyle: TextStyle(color: Colors.grey),
           pinAnimationType: PinAnimationType.scale,
           autoValidate: true,
-          validator: (val) => _validate || val.length < 4 ? '' : 'Wrong ui.pin',
+          validator: (val) => _validate || val.length < 4 ? '' : 'Wrong pin',
           onSubmit: (String value) {
-            FocusScope.of(context).unfocus();
-            widget.onPinValidated(validatePin(value));
+            if (validatePin(value)) {
+              FocusScope.of(context).unfocus();
+              widget.onPinValidated.call();
+            }
           },
           submittedFieldDecoration: _pinPutDecoration,
           selectedFieldDecoration: _pinPutDecoration.copyWith(

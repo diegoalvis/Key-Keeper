@@ -39,8 +39,9 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.lightBlue,
           buttonColor: Colors.lightBlue,
           accentColor: Colors.yellow,
+          dividerColor: Colors.transparent,
         ),
-        home: AccountListPage(),
+        home: WelcomePage(),
       ),
     );
   }
