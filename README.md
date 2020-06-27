@@ -1,8 +1,26 @@
-# keykeeper
+# Key Keeper
 
-Application to store locally all your account credentials in a single place. 
+Flutter application to store locally all your account credentials in a single place. 
 
-## Getting Started
+
+- [x] Dark/Light theme
+- [x] Biometric acces with [Local auth package](https://pub.dev/packages/local_auth)
+- [x] Animations with [Lottie animations](https://lottiefiles.com/)
+
+## Preview iOS
+ 
+|  1  |  2  |  3  |
+| --- | ------- | ------ |
+| ![](screens/5.png)  | ![](screens/6.png) | ![](screens/7.png)  |
+ 
+
+## Preview Android
+|  1  |  2  |  3  |
+| --- | --- | --- |
+| ![](screens/9.png)  | ![](screens/11.png) | ![](screens/12.png)  |
+
+
+## Getting Started with Flutter
 
 This project is a starting point for a Flutter application.
 
