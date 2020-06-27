@@ -3,9 +3,9 @@
 Flutter application to store locally all your account credentials in a single place. 
 
 
-- [x] Dark/Light theme
-- [x] Biometric acces with [Local auth package](https://pub.dev/packages/local_auth)
-- [x] Animations with [Lottie animations](https://lottiefiles.com/)
+* Dark/Light theme
+* Biometric acces with [Local auth package](https://pub.dev/packages/local_auth)
+* Animations with [Lottie animations](https://lottiefiles.com/)
 
 ## Preview iOS
  
