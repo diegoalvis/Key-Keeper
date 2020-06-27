@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: currentBrightness == Brightness.dark ? [Color(0xFF0C1C3D), Colors.black] : [Colors.white, Colors.grey[500]],
+          colors: currentBrightness == Brightness.dark ? [Color(0xFF0C1C3D), Colors.black] : [Colors.white, Colors.grey[300]],
         ),
       ),
       child: MaterialApp(
